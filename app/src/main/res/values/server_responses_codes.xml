@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<resources>
+    <integer name="ok_response">200</integer>
+    <integer name="not_found_response">404</integer>
+    <integer name="unauthorized_response">401</integer>
+    <integer name="internal_error">100</integer>
+    <integer name="user_not_found">301</integer>
+    <integer name="incorrect_password">302</integer>
+
+
+
+
+
+
+    // Define code states sent by Server
+    private static final int SUCCESS_RESPONSE = 200;
+    private static final int NOT_FOUND__RESPONSE = 404;
+    private static final int UNAUTHORIZED__RESPONSE = 401;
+
+    // Used if an internal error occured during  login (i.e JSON exception)
+    private static final int INTERNAL_ERROR = 100;
+
+    // Used if the user is not found
+    private static final int USER_NOT_FOUND = 301;
+
+    // Used if the pass word is incorrect
+    private static final int INCORRECT_PASSWORD = 302;
+
+
+</resources>

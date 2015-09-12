@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="io.interact.mohamedbenarbia.benmycontacts.entry.MainActivity"
+    >
+
+
+    <FrameLayout android:id="@+id/details" android:layout_weight="1"
+        android:layout_width="0px"
+        android:layout_height="match_parent" />
+<!-->
+    <Button
+        android:id="@+id/displayContacts"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Display contacts"
+        android:onClick="displayContacts"
+        />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/displayContacts"
+        android:text="Log out "
+        android:onClick="logout"
+        />
+
+
+    <Button
+        android:id="@+id/displayUserActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/displayContacts"
+        android:text="display user's activity"
+        android:onClick="displayActivities"
+        />
+
+<<<<<<< HEAD
+<!-->
+
+</RelativeLayout>

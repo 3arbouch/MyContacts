@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:minHeight="1000dp"
+    android:minWidth="1000dp"
+    android:background="@color/white"
+    >
+
+
+
+    <TextView
+        android:id="@+id/contactInitials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/contact_initilas"
+        android:layout_alignParentLeft="true"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical|center_horizontal"
+
+        />
+
+    <TextView
+        android:id="@+id/contactName"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/contactInitials"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        />
+
+
+    <TextView
+        android:id="@+id/titlePhoneNumberListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contactInitials"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="15dp"
+        android:background="@color/gray2"
+        android:visibility="gone"
+
+        />
+
+        <ListView
+            android:id="@+id/phoneNumbersListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titlePhoneNumberListView"
+            >
+
+        </ListView>
+
+
+
+
+    <TextView
+        android:id="@+id/titleEmailListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneNumbersListView"
+        android:padding="10dp"
+        android:layout_margin="2dp"
+        android:textSize="15dp"
+        android:background="@color/gray2"
+        android:visibility="gone"
+        />
+        <ListView
+            android:id="@+id/emailsListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleEmailListView"
+
+            >
+
+        </ListView>
+
+        <!-->
+    <TextView
+        android:id="@+id/emails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contactInitials"
+        android:drawableRight="@drawable/phone_icon"
+        android:text="Soulaaam"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:hint="Test"
+        android:layout_margin="10dp"
+        />
+  <!-->
+</RelativeLayout>
