@@ -49,9 +49,12 @@ private Context context  ;
             phoneNumberView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     String url = "tel:"+phoneNumber;
                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
                     getContext().startActivity(intent);
+
+
                 }
             });
 

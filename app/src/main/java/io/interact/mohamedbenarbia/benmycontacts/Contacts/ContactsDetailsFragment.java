@@ -3,15 +3,20 @@ package io.interact.mohamedbenarbia.benmycontacts.Contacts;
 import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -75,9 +80,10 @@ public class ContactsDetailsFragment extends Fragment {
         TextView contactName = (TextView) detailsView.findViewById(R.id.contactName);
         contactName.setText(this.contact.getDisplayName());
 
+
         // Set the phone NumbersList View
         ListView phoneNumbersListView = (ListView) detailsView.findViewById(R.id.phoneNumbersListView);
-        List<JSONObject> listOfPhoneNumbers = this.contact.getPhoneNumbersList();
+        final List<JSONObject> listOfPhoneNumbers = this.contact.getPhoneNumbersList();
         phoneNumbersListView.setAdapter(new PhoneNumberAdapter(getActivity(), listOfPhoneNumbers));
         if (!listOfPhoneNumbers.isEmpty()) {
             TextView titleListOfContacts = (TextView) detailsView.findViewById(R.id.titlePhoneNumberListView);
@@ -86,9 +92,59 @@ public class ContactsDetailsFragment extends Fragment {
 
         }
 
+        final ArrayList<String> listNumbers = getListOfPhoneNumbers(listOfPhoneNumbers) ;
+
+        // Set the sms and call button
+        ImageButton smsButton = (ImageButton) detailsView.findViewById(R.id.smsButton);
+        smsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // show sms activity
+                if (listNumbers.size() == 1) {
+
+                       String url = "sms:" + listNumbers.get(0);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    getActivity().startActivity(intent);
+
+                    // show dialog to choose anumber
+                } else if (listNumbers.size() > 1) {
+                    DialogFragment newFragment = PhoneNumbersAlertDialog.newInstance(
+                            "Send SMS to  " + contact.getDisplayName(),listNumbers , false);
+                    newFragment.show(getFragmentManager(), "dialog");
+
+                }
+
+            }
+        });
+
+
+        ImageButton callButton = (ImageButton) detailsView.findViewById(R.id.callButton);
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (listNumbers.size() == 1) {
+
+
+                       String url = "tel:" + listNumbers.get(0);
+
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+                    getActivity().startActivity(intent);
+
+                    // show dialog to choose anumber
+                } else if (listOfPhoneNumbers.size() > 1) {
+                    DialogFragment newFragment = PhoneNumbersAlertDialog.newInstance(
+                            "Call " + contact.getDisplayName(),listNumbers , true);
+                    newFragment.show(getFragmentManager(), "dialog");
+
+                }
+
+            }
+        });
+
         //Set the email List View
 
-        // Set the phone NumbersList View
         ListView emailListView = (ListView) detailsView.findViewById(R.id.emailsListView);
         List<JSONObject> listOfEmails = this.contact.getEmailList();
         emailListView.setAdapter(new EmailAdapter(getActivity(), listOfEmails));
@@ -106,6 +162,22 @@ public class ContactsDetailsFragment extends Fragment {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+
+    private ArrayList<String> getListOfPhoneNumbers(List<JSONObject> jsonObjectList) {
+        ArrayList<String> listOfPhoneNumbers = new ArrayList<>();
+
+        for (JSONObject phoneNumber : jsonObjectList) {
+            try {
+                listOfPhoneNumbers.add(phoneNumber.getString("number"));
+            } catch (JSONException e) {
+
+            }
+        }
+
+        return listOfPhoneNumbers;
+
     }
 }
 

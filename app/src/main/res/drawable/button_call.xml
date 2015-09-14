@@ -6,14 +6,14 @@
 
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/red2" />
-            <size android:height="80dp"
-                android:width="80dp"/>
+            <solid android:color="#5BC236" />
+            <size android:height="50dp"
+                android:width="50dp"/>
 
         </shape>
 
-    </item>
 
+    </item>
 
 
 </selector>
