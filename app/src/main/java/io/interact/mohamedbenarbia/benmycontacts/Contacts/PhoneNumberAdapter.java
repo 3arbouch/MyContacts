@@ -1,6 +1,8 @@
 package io.interact.mohamedbenarbia.benmycontacts.Contacts;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,14 +37,25 @@ private Context context  ;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.phone_number_element, parent, false);
-        TextView phoneNumber = (TextView)rowView.findViewById(R.id.phoneNumber) ;
+        final TextView phoneNumberView = (TextView)rowView.findViewById(R.id.phoneNumber) ;
+
 
 
         JSONObject phoneNumberJSON = phoneNumbers.get(position) ;
         try {
+            final String phoneNumber = phoneNumberJSON.getString("number") ;
            String details =  phoneNumberJSON.getString("number")+ "<br>"+
                    "<small>"+phoneNumberJSON.getString("type")+"</small>";
-            phoneNumber.setText(Html.fromHtml(details));
+            phoneNumberView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "tel:"+phoneNumber;
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+                    getContext().startActivity(intent);
+                }
+            });
+
+            phoneNumberView.setText(Html.fromHtml(details));
         } catch (JSONException e) {
             e.printStackTrace();
         }
