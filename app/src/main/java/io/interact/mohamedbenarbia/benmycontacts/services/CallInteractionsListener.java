@@ -47,6 +47,7 @@ public class CallInteractionsListener extends BroadcastReceiver {
 
 
     protected void onIncomingCallStarted(Context ctx, String number, long start) {
+        Log.e(LOG_TAG,"Call from: "+number) ;
         UserInteraction interaction = new UserInteraction("", "call", "", "" + start, "INBOUND", number, "");
         Intent mServiceIntent = new Intent(ctx, NewInteractionHandlerService.class);
         mServiceIntent.putExtra("interaction", interaction.toString());
@@ -55,6 +56,7 @@ public class CallInteractionsListener extends BroadcastReceiver {
     }
 
     protected void onOutgoingCallStarted(Context ctx, String number, long start) {
+        Log.e(LOG_TAG,"Call to: "+number) ;
         UserInteraction interaction = new UserInteraction("", "call", "", "" + start, "OUTBOUND", "", number);
         Intent mServiceIntent = new Intent(ctx, NewInteractionHandlerService.class);
         mServiceIntent.putExtra("interaction", interaction.toString());
